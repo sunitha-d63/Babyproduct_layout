@@ -1,0 +1,77 @@
+{% extends "layout/base.html" %} {% block style %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/ordercomplete.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="min-vh-100 bg-white">
+  <div
+    id="confetti-container"
+    class="position-fixed top-0 start-0 w-100 h-100"
+    style="pointer-events: none; z-index: 1000"
+  ></div>
+
+  <nav aria-label="breadcrumb" class="ps-4 pt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{ url_for('home') }}" class="text-decoration-none text-dark"
+          >Home</a
+        >
+      </li>
+      <li class="breadcrumb-item">
+        <a href="{{ url_for('cart') }}" class="text-decoration-none text-dark"
+          >Cart</a
+        >
+      </li>
+      <li class="breadcrumb-item">
+        <a
+          href="{{ url_for('payment') }}"
+          class="text-decoration-none text-dark"
+          >Payment</a
+        >
+      </li>
+      <li class="breadcrumb-item active">Order Complete</li>
+    </ol>
+  </nav>
+
+  <div
+    class="d-flex flex-column align-items-center justify-content-center text-center p-4"
+    style="min-height: 80vh"
+  >
+    <img
+      src="{{ url_for('static', filename='images/order.png') }}"
+      alt="Order Complete"
+      class="img-fluid mb-4"
+      style="max-width: 500px; max-height: 500px"
+    />
+    <p class="text-muted mb-2">
+      <strong> Order ID: {{ order_id }}</strong>
+    </p>
+    <h3 class="mb-4">Your Order Is Completed!</h3>
+    <p class="text-muted mb-4 mx-auto" style="max-width: 600px">
+      Thank you for your order! Your order is being processed and will be
+      completed within 3–6 hours. You will receive an email confirmation when
+      your order is completed.
+    </p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const confettiContainer = document.getElementById("confetti-container");
+    if (confettiContainer) {
+      confetti({
+        particleCount: 300,
+        spread: 70,
+        origin: { y: 0.6 },
+        disableForReducedMotion: true,
+      });
+
+      setTimeout(() => {
+        confettiContainer.style.display = "none";
+      }, 5000);
+    }
+  });
+</script>
+{% endblock %}

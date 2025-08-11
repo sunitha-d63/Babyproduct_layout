@@ -1,0 +1,21 @@
+.carousel-indicators.custom-indicators {
+  position: static;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.carousel-indicators.custom-indicators button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 0;
+  background-color: #4b93bc;
+  margin: 0 5px;
+  transition: all 0.3s;
+}
+
+.carousel-indicators.custom-indicators button.active {
+  width: 16px;
+  height: 16px;
+  background-color: #28729c;
+}

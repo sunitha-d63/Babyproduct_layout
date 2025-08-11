@@ -1,0 +1,32 @@
+<div class="py-5 px-2 px-md-4"> 
+  <div class="text-center">
+    <h2 class="display-6 fw-semibold mb-3">Featured Categories</h2>
+    <p class="fs-5 fw-semibold mb-4 mb-lg-5">Everything Your Baby Needs</p>
+  </div>
+
+  <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3 gap-lg-5">
+    {% set images = [
+      {'img': 'fc1.png', 'category': 'pampers'},
+      {'img': 'fc2.png', 'category': 'girls_fashion'}, 
+      {'img': 'fc3.png', 'category': 'scop'},
+      {'img': 'fc4.png', 'category': 'stroller'}
+    ] %}
+
+    {% for item in images %}
+      <a href="{{ url_for('products_category', category=item.category) }}" 
+         class="position-relative d-flex justify-content-center align-items-center" 
+         style="min-height: 240px; width: 100%; max-width: 300px;">
+        
+        <img src="{{ url_for('static', filename='images/' + item.img) }}" 
+             alt="{{ item.category|replace('_', ' ')|title }}" 
+             class="img-fluid" style="width: 260px; height: auto; object-fit: contain;">
+
+        {% if loop.index == 3 %}
+          <img src="{{ url_for('static', filename='images/baby_soap.png') }}" 
+               alt="Soap" 
+               class="position-absolute" style="bottom: 23%; width: 216px; height: auto; object-fit: contain; z-index: 10;">
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+</div>

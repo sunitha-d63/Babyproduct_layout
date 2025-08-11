@@ -1,0 +1,57 @@
+def get_stroller_products():
+    return  [
+    {
+        "id": 501,
+        "title": "Twin Baby",
+        "images": ["Frame 1171275020.png", "Frame 1171275023.png", 
+                  "Frame 1171275021.png", "Frame 1171275024.png"],
+        "price": 4399,
+        "mrp": 5466,
+        "rating": 5,
+    },
+    {
+        "id": 502,
+        "title": "Baby Rocker",
+        "images": ["Frame 1171275021.png", "Frame 1171275024.png", 
+                  "Frame 1171275025.png", "Frame 1171275022.png"],
+        "price": 8399,
+        "mrp": 9466,
+        "rating": 5,
+    },
+    {
+        "id": 503,
+        "title": "Lavern",
+        "images": ["Frame 1171275022.png", "Frame 1171275025.png", 
+                  "Frame 1171275023.png", "Frame 1171275020.png"],
+        "price": 9399,
+        "mrp": 10466,
+        "rating": 5,
+    },
+    {
+        "id": 504,
+        "title": "Rock Roll",
+        "images": ["Frame 1171275025.png", "Frame 1171275022.png", 
+                  "Frame 1171275020.png", "Frame 1171275023.png"],
+        "price": 3399,
+        "mrp": 4800,
+        "rating": 5,
+    },
+    {
+        "id": 505,
+        "title": "Kinger",
+        "images": ["Frame 1171275024.png", "Frame 1171275021.png", 
+                  "Frame 1171275022.png", "Frame 1171275025.png"],
+        "price": 7000,
+        "mrp": 6000,
+        "rating": 5,
+    },
+    {
+        "id": 506,
+        "title": "Dravo",
+        "images": ["Frame 1171275023.png", "Frame 1171275020.png", 
+                  "Frame 1171275024.png", "Frame 1171275021.png"],
+        "price": 5466,
+        "mrp": 4399,
+        "rating": 4,
+    }
+]

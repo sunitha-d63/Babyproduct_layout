@@ -1,0 +1,57 @@
+def get_girls_fashion_products():
+    return  [
+    {
+        "id": 301,
+        "title": "Halemons Floral",
+        "images": ["Frame 1171275009.png", "Frame 1171275012.png", 
+                  "Frame 1171275010.png", "Frame 1171275013.png"],
+        "price": 1466,
+        "mrp": 1399,
+        "rating": 5,
+    },
+    {
+        "id": 302,
+        "title": "Halemons Victoria",
+        "images": ["Frame 1171275010.png", "Frame 1171275013.png", 
+                  "Frame 1171275014.png", "Frame 1171275011.png"],
+        "price": 1666,
+        "mrp": 1299,
+        "rating": 5,
+    },
+    {
+        "id": 303,
+        "title": "Newborn Cutie",
+        "images": ["Frame 1171275011.png", "Frame 1171275014.png", 
+                  "Frame 1171275012.png", "Frame 1171275009.png"],
+        "price": 2466,
+        "mrp": 2399,
+        "rating": 5,
+    },
+    {
+        "id": 304,
+        "title": "Fareto Baby",
+        "images": ["Frame 1171275014.png", "Frame 1171275011.png", 
+                  "Frame 1171275009.png", "Frame 1171275012.png"],
+        "price": 699,
+        "mrp": 866,
+        "rating": 4,
+    },
+    {
+        "id": 305,
+        "title": "Zibuyu",
+        "images": ["Frame 1171275013.png", "Frame 1171275010.png", 
+                  "Frame 1171275011.png", "Frame 1171275014.png"],
+        "price": 466,
+        "mrp": 599,
+        "rating": 5,
+    },
+    {
+        "id": 306,
+        "title": "Poppes",
+        "images": ["Frame 1171275012.png", "Frame 1171275009.png", 
+                  "Frame 1171275013.png", "Frame 1171275010.png"],
+        "price": 399,
+        "mrp": 466,
+        "rating": 5,
+    }
+]

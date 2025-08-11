@@ -1,0 +1,17 @@
+{% macro render_pagination() %}
+<div class="d-flex justify-content-center align-items-center mt-5 gap-2">
+    <button class="btn btn-sm">
+        <i class="fas fa-chevron-left text-info"></i>
+    </button>
+    
+    {% for page in range(1, 8) %}
+    <button class="btn  btn-sm">
+        {{ page }}
+    </button>
+    {% endfor %}
+    
+    <button class="btn  btn-sm">
+        <i class="fas fa-chevron-right text-info"></i>
+    </button>
+</div>
+{% endmacro %}

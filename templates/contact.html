@@ -1,0 +1,107 @@
+{% extends "layout/base.html" %} {% block style %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/contact.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<section class="py-5">
+     <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('home') }}" class="text-decoration-none text-dark">Home</a></li>
+            <li class="breadcrumb-item active">Contact</li>
+        </ol>
+    </nav>
+  <div class="container mt-3">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <img
+          src="{{ url_for('static', filename='images/contactImage.png') }}"
+          alt="Contact Us"
+          class="img-fluid rounded shadow"
+        />
+      </div>
+
+      <div class="col-lg-6">
+        <form method="POST" class="needs-validation" novalidate>
+          {{ form.hidden_tag() }}
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              {{ form.first_name.label(class="form-label fw-semibold") }} {{
+              form.first_name(class="form-control transparent-input border-0
+              border-bottom border-info") }} {% if form.first_name.errors %}
+              <div class="invalid-feedback d-block">
+                {{ form.first_name.errors[0] }}
+              </div>
+              {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+              {{ form.last_name.label(class="form-label fw-semibold") }} {{
+              form.last_name(class="form-control transparent-input border-0 border-bottom
+              border-info") }} {% if form.last_name.errors %}
+              <div class="invalid-feedback d-block">
+                {{ form.last_name.errors[0] }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              {{ form.email.label(class="form-label fw-semibold") }} {{
+              form.email(class="form-control transparent-input border-0 border-bottom
+              border-info") }} {% if form.email.errors %}
+              <div class="invalid-feedback d-block">
+                {{ form.email.errors[0] }}
+              </div>
+              {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+              {{ form.phone.label(class="form-label fw-semibold") }} {{
+              form.phone(class="form-control transparent-input border-0 border-bottom
+              border-info") }} {% if form.phone.errors %}
+              <div class="invalid-feedback d-block">
+                {{ form.phone.errors[0] }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <p class="fw-bold mb-2">Select Subject?</p>
+            <div class="d-flex flex-wrap gap-3">
+              {% for subfield in form.subject %}
+              <div class="form-check">
+                {{ subfield(class="form-check-input fw-semibold fs-6") }} {{
+                subfield.label(class="form-check-label") }}
+              </div>
+              {% endfor %}
+            </div>
+            {% if form.subject.errors %}
+            <div class="invalid-feedback d-block">
+              {{ form.subject.errors[0] }}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="mb-4">
+            {{ form.message.label(class="form-label fw-semibold") }} {{
+            form.message(class="form-control border-0 transparent-input border-bottom
+            border-info", rows=3) }} {% if form.message.errors %}
+            <div class="invalid-feedback d-block">
+              {{ form.message.errors[0] }}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="text-end">
+            {{ form.submit(class="btn btn-info text-dark fw-semibold px-4 py-2")
+            }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

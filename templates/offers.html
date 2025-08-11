@@ -1,0 +1,71 @@
+{% extends "layout/base.html" %}
+{%block style%}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/product.css') }}"
+/>
+{% endblock %}
+{% block content %}
+{% from "macros.html" import render_pagination %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        {% for crumb in breadcrumbs %}
+          {% if crumb.url %}
+            <li class="breadcrumb-item"><a href="{{ crumb.url }}" class="text-decoration-none text-dark">{{ crumb.name }}</a></li>
+          {% else %}
+            <li class="breadcrumb-item active" aria-current="page">{{ crumb.name }}</li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </nav>
+    <div class="dropdown">
+      <button class="btn btn-outline-secondary dropdown-toggle " type="button"
+              id="filterToggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Filters <i class="fas fa-sort"></i>
+ 
+      </button>
+      <ul class="dropdown-menu  p-2" aria-labelledby="filterToggle">
+        <li class="dropdown-header">Price Range</li>
+        <li><a class="dropdown-item" href="#" onclick="applyFilter({min_price:100,max_price:1000})">Price(100-1000)</a></li>
+        <li><a class="dropdown-item" href="#" onclick="applyFilter({min_price:1000,max_price:1500})">Price(1000-1500)</a></li>
+        <li><a class="dropdown-item" href="#" onclick="applyFilter({min_price:1500,max_price:10000})">Price(1500-10000)</a></li>
+        <li><a class="dropdown-item" href="#" onclick="applyFilter({free_shipping:true})">Free Shipping</a></li>
+        <li><a class="dropdown-item" href="#" onclick="applyFilter({discounts:true})">Discounts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+      {% for product in products %}
+      <div class="col-md-4">
+        <div class="product-card shadow-sm">
+             {% if product.is_new %}
+          <div class="new-badge">NEW</div>
+          {% endif %}
+         <img src="{{ url_for('static', filename='images/' + product.images[0]) }}" 
+               class="card-img-top p-3 product-image" alt="{{ product.title }}">
+          <a href="{{ url_for('checkout', product_id=product.id) }}" class="btn buy-btn">Buy</a>
+          <div class="product-info">
+            <h3 class="h4">{{ product.title }}</h3>
+            <div class="rating mb-2">
+              {% for i in range(5) %}
+              <i
+                class="fas fa-star {% if i >= product.rating %}text-white{% endif %}"
+              ></i>
+              {% endfor %}
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="mrp text-muted">MRP ₹{{ product.mrp }}</span>
+              <span class="price fw-bold">Price ₹{{ product.price }}.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+{{ render_pagination() }}
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/filter.js') }}"></script>
+{% endblock %}

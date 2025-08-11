@@ -1,0 +1,65 @@
+{% extends "layout/base.html" %} {% block style %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/about.css') }}"
+/>
+{% endblock %}
+
+{% block content %}
+<section class="container py-5 about">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('home') }}" class="text-decoration-none text-dark">Home</a></li>
+            <li class="breadcrumb-item active">About Us</li>
+        </ol>
+    </nav>
+
+    <div class="row mt-4">
+        <!-- Logo Column -->
+        <div class="col-md-4 text-center text-md-start mb-5 mb-md-0">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                 alt="EarthBubs Logo" 
+                 class="img-fluid mb-3" 
+                 style="max-width: 240px;">
+            <h2 class="h3 fs-4">EarthBubs</h2>
+        </div>
+
+        <!-- Content Column -->
+        <div class="col-md-8">
+            <h1 class="h2 mb-4 about">About Us</h1>
+            <p class="mb-4 fs-5 fw-semibold">
+                At EarthBubs, we believe that every baby deserves the safest, softest start in life.
+                That's why we're dedicated to offering high quality, trusted baby products that combine
+                comfort, care, and innovation all wrapped in love. Born from a parent's desire for gentle, safe, and natural baby essentials, our journey began with one goal: 
+                to make parenting a little easier, and a lot more joyful. From soft diapers and skin-loving care to smart 
+                strollers and feeding must-haves, every product we offer is thoughtfully chosen and thoroughly tested for 
+                your baby's well being. We're more than just a store — we're part of your parenting journey.
+            </p>
+
+            <h2 class="h4 mb-3">What Makes Us Different:</h2>
+            <ul class="list-unstyled fw-semibold ">
+                <li class="mb-2 d-flex align-items-start">
+                    <span class="me-2">🌿</span>
+                    <span>Natural, safe, and toxin-free ingredients</span>
+                </li>
+                <li class="mb-2 d-flex align-items-start">
+                    <span class="me-2">🛡️</span>
+                    <span>Pediatrician & dermatologist approved</span>
+                </li>
+                <li class="mb-2 d-flex align-items-start">
+                    <span class="me-2">👶</span>
+                    <span>Designed with real parents in mind</span>
+                </li>
+                <li class="mb-2 d-flex align-items-start">
+                    <span class="me-2">🌎</span>
+                    <span>Eco-conscious and cruelty-free practices</span>
+                </li>
+                <li class="mb-2 d-flex align-items-start">
+                    <span class="me-2">❤️</span>
+                    <span>10,000+ happy families and growing!</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

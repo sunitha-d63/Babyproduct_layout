@@ -1,0 +1,70 @@
+{%block style%}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/bestseller.css') }}"
+/>
+{% endblock %} {% block content %}
+<section class="py-5 bg-light">
+  <div class="container">
+    <h1 class="text-center mb-5">Best Sellers</h1>
+    <div id="bestsellerCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        {% for slide in slides %}
+        <div
+          class="carousel-item {% if loop.index0 == current_index %}active{% endif %}"
+        >
+          <div class="row g-4">
+            {% for product in slide %}
+            <div class="col-md-4">
+              <div class="product-card shadow-sm">
+                <div class="new-badge">NEW</div>
+                <img
+                  src="{{ url_for('static', filename='images/' + product.image) }}"
+                  alt="{{ product.title }}"
+                  class="product-image"
+                />
+                <a
+                  href="{{ url_for('checkout', product_id=product.id) }}"
+                  class="btn buy-btn"
+                  >Buy</a
+                >
+                <div class="product-info">
+                  <h3 class="h4">{{ product.title }}</h3>
+                  <div class="rating mb-2">
+                    {% for i in range(5) %}
+                    <i
+                      class="fas fa-star {% if i >= product.rating %}text-white{% endif %}"
+                    ></i>
+                    {% endfor %}
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span class="mrp text-muted">MRP ₹{{ product.mrp }}</span>
+                    <span class="price fw-bold"
+                      >Price ₹{{ product.price }}.00</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="carousel-indicators">
+      {% for idx in range(slides|length) %}
+      <button
+        type="button"
+        data-bs-target="#bestsellerCarousel"
+        data-bs-slide-to="{{ idx }}"
+        class="{% if idx == current_index %}active{% endif %}"
+        aria-label="Slide {{ idx + 1 }}"
+      ></button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/testimonial.js') }}"></script>
+{% endblock %}

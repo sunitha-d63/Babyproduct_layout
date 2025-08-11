@@ -1,0 +1,28 @@
+{% block style %}
+<link href="{{ url_for('static', filename='css/faq.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="container-fluid faq-container">
+        <div class="faq-header">
+            <h2 class="display-6 fw-semibold  mb-3">Frequently Asked Questions</h2>
+            <p class="fs-5 fw-semibold mb-4 mb-lg-5">Find answers to common questions about our products and services</p>
+        </div>
+        
+        <div class="faq-list">
+            {% for item in faqs %}
+            <div class="faq-item">
+                <button class="faq-question fs-5 fw-semibold" onclick="toggleFaq(this)">
+                    <span>{{ item.question }}</span>
+                    <span class="faq-toggle">▾</span>
+                </button>
+                <div class="faq-answer fs-6 fw-semibold" style="display: none;">
+                    {{ item.answer }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/faq.js') }}"></script>
+{% endblock %} 

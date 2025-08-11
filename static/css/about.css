@@ -1,0 +1,38 @@
+
+.about-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.about img
+{
+    width: 240px !important;
+}
+h2{
+    font-size: 14px !important;
+}
+.about ul> li{
+font-size: 13px !important;
+}
+.about-logo {
+    max-width: 240px;
+    height: auto;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
+
+.breadcrumb-item a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.list-unstyled li {
+    padding: 8px 0;
+    font-size: 1.1rem;
+}

@@ -1,0 +1,30 @@
+{% block content %}
+<section class="bg-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+               <img src="{{ url_for('static', filename='images/diapers.png') }}"
+     alt="Pampers"
+     class="img-fluid rounded"
+     style="width: 500px; height: auto; max-width: 100%;">
+            </div>
+
+            <div class="col-lg-6">
+                <h3 class="display-4 font-weight-bold text-dark mb-4">Pampers</h3>
+                <p class="lead text-black mb-4 custom-line-height">
+                    Keep your baby dry, comfy and smiling all day with our ultra-soft diapers. 
+                    Designed with liak-lock technology and breathable layers for extra protection.
+                    Gentle on delicate skin, perfect for day and night comfort.
+                </p>
+                <a href="{{ url_for('products_category', category='pampers') }}" class="btn btn-info btn-lg rounded-pill px-4 py-2 buybtn">
+                    Buy Now
+                    <img src="{{ url_for('static', filename='images/leftarrow.png') }}"
+                         alt="arrow"
+                         class="ms-2"
+                         style="width: 20px; height: 20px;">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

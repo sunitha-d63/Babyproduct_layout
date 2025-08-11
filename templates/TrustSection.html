@@ -1,0 +1,25 @@
+
+<div class="py-5 px-3 px-sm-4 px-lg-5 bg-white text-center">
+     <div class="text-center">
+    <h2 class="display-6 fw-semibold  mb-3">Why Parents Trust Us</h2> 
+    <p class="fs-5 fw-semibold mb-4 mb-lg-5">Designed with Love. Backed by Science.</p> 
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-center gap-3 gap-md-4">
+    {% set trust_images = [
+      'trust1.png',
+      'trust2.png', 
+      'trust3.png',
+      'trust4.png',
+      'trust5.png'
+    ] %}
+    
+    {% for img in trust_images %}
+      <div class="flex-shrink-0">
+        <img src="{{ url_for('static', filename='images/' + img) }}" 
+             alt="Trust Badge {{ loop.index }}"
+             class="img-fluid mx-auto" style="width: 220px; height: auto;">
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,135 @@
+{% extends "layout/base.html" %} {% block style %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/checkout.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="checkout-container mb-5">
+  <div class="breadcrumbs text-decoration-none text-dark">
+    <span>Home</span> &gt; <span>Products</span> &gt; <span>Check Out</span>
+  </div>
+
+  <div class="product-display">
+    <div class="thumbnail-column">
+      {% for image in product.images %}
+      <div class="thumbnail mb-2">
+        <img
+          src="{{ url_for('static', filename='images/' + image) }}"
+          alt="Thumbnail {{ loop.index }}"
+        />
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="main-center">
+      <div class="main-image">
+        <span class="coupon-badge">Coupon: EB55</span>
+        <div class="main-image-container border-0">
+          <img
+            id="mainProductImage"
+            class="main-product-image"
+            src="{{ url_for('static', filename='images/' + product.images[0]) }}"
+            alt="{{ product.title }}"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h1>{{ product.title }}</h1>
+
+      <div class="rating-stock">
+        <div class="stars">
+          {% for i in range(5) %}
+          <span class="star {% if i < product.rating %}filled{% endif %}"
+            >★</span
+          >
+          {% endfor %}
+        </div>
+        <span class="reviews">(18 Reviews)</span>
+        <span class="stock-badge">In Stock</span>
+      </div>
+
+      <p class="description">
+        Give your baby the gentle care they deserve with EarthBubs Premium Baby
+        Pampers, designed for all-day comfort and protection. Crafted with
+        ultra-soft, breathable materials, these diapers keep your little one
+        dry, happy, and rash-free. The super-absorbent core locks in moisture
+        for up to 12 hours of leak-free protection, while the flexible waistband
+        ensures a snug yet comfy fit as your baby moves and plays. Plus, a
+        built-in wetness indicator makes changing time easie
+      </p>
+
+      <div class="product-options">
+        <div class="option-group">
+          <span class="option-label">Colours:</span>
+          <div class="color-dots">
+            <span class="dot blue"></span>
+            <span class="dot pink"></span>
+          </div>
+        </div>
+
+        <div class="option-group">
+          <span class="option-label">Size:</span>
+          <span class="size-value">Free Size</span>
+        </div>
+      </div>
+
+      <div class="pricing mb-2">
+        <span class="mrp fw-bold text-black">MRP ₹{{ product.mrp }}</span>
+        <span class="price">Sale Price ₹{{ product.price }}</span>
+      </div>
+      <div class="quantity-selector mb-2">
+        <button class="qty-btn" onclick="updateQuantity(-1)">-</button>
+        <span class="quantity" id="quantity">1</span>
+        <button class="qty-btn" onclick="updateQuantity(1)">+</button>
+        <form
+          action="{{ url_for('add_to_cart') }}"
+          method="POST"
+          class="d-inline"
+        >
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+          <input type="hidden" name="product_id" value="{{ product.id }}" />
+          <input type="hidden" name="quantity" id="form-quantity" value="1" />
+          <button type="submit" class="btn btn-primary buy-now-btn">
+            Buy Now
+          </button>
+        </form>
+      </div>
+
+      <div class="delivery-info">
+        <div class="info-item">
+          <img
+            src="{{ url_for('static', filename='images/delivery.png') }}"
+            alt="Delivery"
+            class="icon"
+          />
+          <div class="info-text">
+            <p class="fw-semibold">Free Delivery</p>
+            <span class="underline text-black"
+              >Enter your postal code for Delivery Availability</span
+            >
+          </div>
+        </div>
+        <div class="info-item">
+          <img
+            src="{{ url_for('static', filename='images/return.png') }}"
+            alt="Returns"
+            class="icon"
+          />
+          <div class="info-text">
+            <p class="fw-bold">Return Delivery</p>
+            <span
+              >Free 7 Days Delivery Returns
+              <span class="underline text-black">Details</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/checkout.js') }}"></script>
+{% endblock %}

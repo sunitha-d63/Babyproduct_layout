@@ -1,0 +1,208 @@
+{% extends "layout/base.html" %} {% block style %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/cart.css') }}"
+/>
+{% endblock %}{% block content %}
+<div class="container mt-4 mb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{ url_for('home') }}" class="text-decoration-none text-dark"
+          >Home</a
+        >
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Cart</li>
+    </ol>
+  </nav>
+
+  {% if not cart_items %}
+  <div class="alert alert-info">
+    Your cart is empty.
+    <a href="{{ url_for('products') }}" class="alert-link">Continue shopping</a>
+  </div>
+  {% else %}
+  <div class="table-responsive d-none d-md-block">
+    <table class="table table-bordered">
+      <thead class="table">
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              <img
+                src="{{ url_for('static', filename='images/' + item.image) }}"
+                class="img-thumbnail me-3"
+                width="80"
+                alt="{{ item.title }}"
+              />
+              <span>{{ item.title }}</span>
+            </div>
+          </td>
+          <td>₹{{ item.price }}</td>
+          <td>
+            <form
+              method="POST"
+              action="{{ url_for('update_quantity', product_id=item.id) }}"
+              class="d-flex"
+            >
+              <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}"
+              />
+              <input
+                type="number"
+                name="quantity"
+                value="{{ item.quantity }}"
+                min="1"
+                class="form-control form-control-sm text-center"
+                style="width: 60px"
+              />
+              <button type="submit" class="btn btn-sm btn-outline-primary ms-2">
+                Update
+              </button>
+            </form>
+          </td>
+          <td>₹{{ item.price * item.quantity }}</td>
+          <td>
+            <a
+              href="{{ url_for('remove_from_cart', product_id=item.id) }}"
+              class="btn btn-sm btn-outline-danger"
+              title="Remove item"
+            >
+              ✕
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-md-none">
+    {% for item in cart_items %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex">
+            <img
+              src="{{ url_for('static', filename='images/' + item.image) }}"
+              class="img-thumbnail me-3"
+              width="60"
+              alt="{{ item.title }}"
+            />
+            <div>
+              <h6>{{ item.title }}</h6>
+              <div>₹{{ item.price }}</div>
+            </div>
+          </div>
+          <a
+            href="{{ url_for('remove_from_cart', product_id=item.id) }}"
+            class="btn btn-sm btn-outline-danger align-self-start"
+            title="Remove item"
+          >
+            ✕
+          </a>
+        </div>
+        <div class="mt-3">
+          <form
+            method="POST"
+            action="{{ url_for('update_quantity', product_id=item.id) }}"
+            class="d-flex align-items-center"
+          >
+            <label class="me-2">Qty:</label>
+            <input
+              type="number"
+              name="quantity"
+              value="{{ item.quantity }}"
+              min="1"
+              class="form-control form-control-sm text-center"
+              style="width: 60px"
+            />
+            <button type="submit" class="btn btn-sm btn-outline-primary ms-2">
+              Update
+            </button>
+          </form>
+        </div>
+        <div class="mt-2 text-end fw-bold">
+          Subtotal: ₹{{ item.price * item.quantity }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6 mb-4">
+      <div class="coupon-card">
+        <form method="POST" class="coupon-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+          <div class="input-group">
+            <input
+              type="text"
+              name="coupon_code"
+              class="form-control coupon-input"
+              placeholder="Coupon code"
+              value="{{ coupon.code if coupon else '' }}"
+            />
+            <button type="submit" class="btn apply-btn">Apply Coupon</button>
+          </div>
+        </form>
+        {% if coupon %}
+        <div class="coupon-applied">
+          <span class="coupon-code">{{ coupon.code }}</span>
+          <span class="discount-amount"
+            >-₹{{ subtotal * coupon.discount }}</span
+          >
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card border-info">
+        <div class="card-body">
+          <h5 class="card-title">Cart Total</h5>
+          <div class="d-flex justify-content-between">
+            <span>Subtotal:</span>
+            <span>₹{{ subtotal }}</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between">
+            <span>Discount:</span>
+            <span>-₹{{ discount }}</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between">
+            <span>Shipping:</span>
+            <span>Free</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between fs-5">
+            <span>Total:</span>
+            <span>₹{{ total }}</span>
+          </div>
+          <div class="d-grid mt-3">
+            <a
+              href="{{ url_for('payment') }}"
+              class="btn btn-primary btn-lg checkoutbth"
+            >
+              Proceed to Checkout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

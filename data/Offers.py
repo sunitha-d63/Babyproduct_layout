@@ -1,0 +1,57 @@
+def get_offer_products():
+    return [
+    {
+        "id": 11,
+        "title": "Diaper Combo",
+        "images": ["Frame 1171275000.png", "b3.png", 
+                  "Frame 1171275006.png", "Frame 1171275022.png"],
+        "price": 1300,
+        "mrp": 1850,
+        "rating": 5,
+    },
+    {
+        "id": 12,
+        "title": "Marcus",
+        "images": ["Frame 1171275006.png", "Frame 1171275022.png", 
+                  "Frame 1171275017.png", "Frame 1171275009.png"],
+        "price": 1199,
+        "mrp": 1466,
+        "rating": 4,
+    },
+    {
+        "id": 13,
+        "title": "Halemons Floral",
+        "images": ["Frame 1171275009.png", "Frame 1171275017.png", 
+                  "b3.png", "Frame 1171275000.png"],
+        "price": 1399,
+        "mrp": 1466,
+        "rating": 5,
+    },
+    {
+        "id": 14,
+        "title": "Naturals Soap",
+        "images": ["Frame 1171275017.png", "Frame 1171275009.png", 
+                  "Frame 1171275000.png", "b3.png"],
+        "price": 599,
+        "mrp": 600,
+        "rating": 5,
+    },
+    {
+        "id": 15,
+        "title": "Lavern",
+        "images": ["Frame 1171275022.png", "Frame 1171275006.png", 
+                  "Frame 1171275009.png", "Frame 1171275017.png"],
+        "price": 9399,
+        "mrp": 10466,
+        "rating": 5,
+    },
+    {
+        "id": 16,
+        "title": "Philips",
+        "images": ["b3.png", "Frame 1171275000.png", 
+                  "Frame 1171275022.png", "Frame 1171275006.png"],
+        "price": 599,
+        "mrp": 600,
+        "rating": 5,
+    }
+]

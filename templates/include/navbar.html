@@ -1,0 +1,169 @@
+{%block style%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}" />
+{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow sticky-top">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand d-flex align-items-center px-2"
+      href="{{ url_for('home') }}"
+    >
+      <img
+        src="{{ url_for('static', filename='images/logo.png') }}"
+        alt="Logo"
+        class="navbar-logo"
+        style="height: 42px"
+      />
+      <span class="ms-2 d-none fw-semibold d-sm-inline">EarthBubs</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-semibold fs-5 gap-2">
+        {% macro nav_item(endpoint, label) -%}
+        <li class="nav-item px-2">
+          <a
+            class="nav-link {% if request.endpoint and request.endpoint == endpoint %} active bg-opacity-10 text-dark rounded-top {% endif %}"
+            href="{{ url_for(endpoint) }}"
+            >{{ label }}</a
+          >
+        </li>
+        {%- endmacro %} {{ nav_item('home', 'Home') }}
+
+        <li class="nav-item dropdown px-3">
+          <a
+            class="nav-link"
+            href="{{ url_for('products') }}"
+            id="productsDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Products
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-lg-end"
+            aria-labelledby="productsDropdown"
+          >
+            <li>
+              <a
+                class="dropdown-item py-2"
+                href="{{ url_for('products_category', category='pampers') }}"
+                >Pampers</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item py-2"
+                href="{{ url_for('products_category', category='boys_fashion') }}"
+                >Boy's Fashion</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item py-2"
+                href="{{ url_for('products_category', category='girls_fashion') }}"
+                >Girl's Fashion</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item py-2"
+                href="{{ url_for('products_category', category='scop') }}"
+                >Scop</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item py-2"
+                href="{{ url_for('products_category', category='stroller') }}"
+                >Stroller</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item py-2"
+                href="{{ url_for('products_category', category='bottle') }}"
+                >Bottle</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        {{ nav_item('offers', 'Offers') }} {{ nav_item('about', 'About') }} {{
+        nav_item('contact', 'Contacts') }}
+      </ul>
+
+      <div class="d-flex align-items-center gap-3">
+        <form class="d-flex" method="get" action="{{ url_for('search') }}">
+          <div class="input-group" style="min-width: 220px">
+            <input
+              class="form-control form-control-sm border-end-0"
+              type="search"
+              name="q"
+              placeholder="Search products..."
+              style="outline: none; box-shadow: none !important"
+              required
+            />
+            <button
+              class="btn btn-outline-info btn-sm border-start-0"
+              type="submit"
+              style="outline: none"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+
+        <ul class="navbar-nav align-items-center gap-2">
+          <li class="nav-item position-relative mx-2">
+            <a
+              class="nav-link p-0"
+              href="{{ url_for('cart') }}"
+              style="position: relative"
+            >
+              <img
+                src="{{ url_for('static', filename='images/addToCart.png') }}"
+                width="36"
+                alt="Cart"
+                class="d-block"
+              />
+              {% if cart_count > 0 %}
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info"
+                style="
+                  font-size: 0.65rem;
+                  transform: translate(-50%, -20%) !important;
+                "
+              >
+                {{ cart_count }}
+                <span class="visually-hidden">items in cart</span>
+              </span>
+              {% endif %}
+            </a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a
+              class="nav-link p-1"
+              href="{{ url_for('logout') }}"
+              onclick="return confirm('Are you sure you want to logout?');"
+            >
+              <img
+                src="{{ url_for('static', filename='images/login.png') }}"
+                width="42"
+                alt="Logout"
+              />
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

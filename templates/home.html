@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Home – EarthBubs{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-0 mx-0"> 
+  <div class="row g-0 mx-0"> 
+    <div class="col-12 px-0"> 
+      <img src="{{ url_for('static', filename='images/banner1.png') }}" 
+           alt="EarthBubs Banner"
+           class="img-fluid w-100 d-block">
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid"> 
+  {% include 'FeaturedCategories.html' %}
+  {% include 'TrustSection.html' %}
+  {% include 'best_sellers.html' %}
+  {% include 'BabyStroller.html' %}
+  {% include 'feeding_bottle.html' %}
+  {% include 'pampershome.html' %}
+  {% include 'testimonials.html' %}
+  {% include 'faq.html' %}
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+def get_boys_fashion_products():
+   return [
+    {
+        "id": 201,
+        "title": "Mama Miel Baby",
+        "images": ["Frame 1171275003.png", "Frame 1171275006.png", 
+                  "Frame 1171275004.png", "Frame 1171275007.png"],
+        "price": 3199,
+        "mrp": 3600,
+        "rating": 5,
+    },
+    {
+        "id": 202,
+        "title": "Caleb",
+        "images": ["Frame 1171275004.png", "Frame 1171275007.png", 
+                  "Frame 1171275008.png", "Frame 1171275005.png"],
+        "price": 1890,
+        "mrp": 2300,
+        "rating": 4,
+    },
+    {
+        "id": 203,
+        "title": "Mee Mee Premium",
+        "images": ["Frame 1171275005.png", "Frame 1171275008.png", 
+                  "Frame 1171275006.png", "Frame 1171275003.png"],
+        "price": 1399,
+        "mrp": 2466,
+        "rating": 5,
+    },
+    {
+        "id": 204,
+        "title": "Saphis",
+        "images": ["Frame 1171275008.png", "Frame 1171275005.png", 
+                  "Frame 1171275003.png", "Frame 1171275006.png"],
+        "price": 1800,
+        "mrp": 2100,
+        "rating": 5,
+    },
+    {
+        "id": 205,
+        "title": "Archer",
+        "images": ["Frame 1171275007.png", "Frame 1171275004.png", 
+                  "Frame 1171275005.png", "Frame 1171275008.png"],
+        "price": 1399,
+        "mrp": 1466,
+        "rating": 5,
+    },
+    {
+        "id": 206,
+        "title": "Marcus",
+        "images": ["Frame 1171275006.png", "Frame 1171275003.png", 
+                  "Frame 1171275007.png", "Frame 1171275004.png"],
+        "price": 1199,
+        "mrp": 1466,
+        "rating": 5,
+    }
+]
