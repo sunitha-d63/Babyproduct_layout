@@ -92,6 +92,15 @@ def get_best_sellers():
         {"id": 4, "title": "Wipes", "image": "Img-card-col.png", "rating": 5, "mrp": 1444, "price": 1299},
         {"id": 5, "title": "Mama Miel Baby", "image": "Frame 1171275003.png", "rating": 5, "mrp": 1444, "price": 1299},
         {"id": 6, "title": "Zibuyu", "image": "Frame 1171275013.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 7, "title": "Wipes", "image": "Img-card-col.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 8, "title": "Mama Miel Baby", "image": "Frame 1171275003.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 9, "title": "Zibuyu", "image": "Frame 1171275013.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 10, "title": "Wipes", "image": "Img-card-col.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 11, "title": "Mama Miel Baby", "image": "Frame 1171275003.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 12, "title": "Zibuyu", "image": "Frame 1171275013.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 13, "title": "Wipes", "image": "Img-card-col.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 14, "title": "Mama Miel Baby", "image": "Frame 1171275003.png", "rating": 5, "mrp": 1444, "price": 1299},
+        {"id": 15, "title": "Zibuyu", "image": "Frame 1171275013.png", "rating": 5, "mrp": 1444, "price": 1299},
     ]
 
 @app.route('/best-sellers')
@@ -567,6 +576,14 @@ def find_product_by_id(product_id):
                 return product
                 
     return None  
+
+@app.route("/product/<int:product_id>")
+def product_detail(product_id):
+    product = find_product_by_id(product_id)
+    if not product:
+        return "Product not found", 404
+    return render_template("product_detail.html", product=product)
+
 
 @app.route('/search')
 def search():

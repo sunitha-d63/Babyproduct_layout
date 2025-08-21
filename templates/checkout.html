@@ -16,6 +16,8 @@
         <img
           src="{{ url_for('static', filename='images/' + image) }}"
           alt="Thumbnail {{ loop.index }}"
+          onclick="document.getElementById('mainProductImage').src=this.src"
+          style="cursor: pointer"
         />
       </div>
       {% endfor %}

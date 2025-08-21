@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     indicators.forEach(function(indicator, index) {
       var distance = Math.abs(index - e.to);
       if (distance === 0) {
-        indicator.style.width = '16px';
-        indicator.style.height = '16px';
+        indicator.style.width = '8px';
+        indicator.style.height = '8px';
         indicator.style.backgroundColor = '#28729c';
       } else {
         indicator.style.width = '8px';

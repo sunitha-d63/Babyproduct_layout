@@ -24,18 +24,23 @@ class RegistrationForm(FlaskForm):
     ])
     submit = SubmitField('Sign Up')
 
-
+def validate_no_special_chars(form, field):
+    """Validator to reject special characters (only allow letters, numbers, spaces, and basic punctuation)"""
+    if field.data:
+        pattern = r'^[a-zA-Z0-9\s\.,\-\\/]+$'
+        if not re.match(pattern, field.data):
+            raise ValidationError('Special characters are not allowed in this field(Street_address,apartment,city).')
 
 def validate_phone(form, field):
     if not re.match(r'^[0-9]{10}$', field.data):
         raise ValidationError('Please enter a valid 10-digit mobile number (no special characters)')
 
 class PaymentForm(FlaskForm):
-    first_name = StringField('First Name', validators=[DataRequired()])
-    company_name = StringField('Company Name')
-    street_address = StringField('Street Address')
-    apartment = StringField('Apartment, Floor, etc (Optional)')
-    city = StringField('Tower/City', validators=[DataRequired()])
+    first_name = StringField('First Name', validators=[DataRequired(), validate_no_special_chars])
+    company_name = StringField('Company Name', validators=[validate_no_special_chars])
+    street_address = StringField('Street Address', validators=[DataRequired(), validate_no_special_chars])
+    apartment = StringField('Apartment, Floor, etc (Optional)', validators=[validate_no_special_chars])
+    city = StringField('Tower/City', validators=[DataRequired(), validate_no_special_chars])
     phone = StringField('Phone Number', validators=[
         DataRequired(),
         validate_phone 
@@ -58,7 +63,7 @@ class ContactForm(FlaskForm):
     phone = StringField('Phone', validators=[
     DataRequired(),
     Regexp(
-        r'^[0-9]{10}$',  # Only exactly 10 digits (0-9)
+        r'^[0-9]{10}$', 
         message='Phone must be 10 digits (0-9) with no spaces, hyphens, or special characters'
     )
 ])
@@ -68,8 +73,11 @@ class ContactForm(FlaskForm):
         ('Complaint', 'Complaint'),
         ('Information', 'Information')
     ], validators=[DataRequired()])
-    message = TextAreaField('Message', validators=[
-        DataRequired(),
+    message = TextAreaField('Message', 
+    validators=[
+        DataRequired(), 
         Length(min=10, message='Message must be at least 10 characters')
-    ])
+    ],
+    render_kw={"placeholder": "write your message.."}
+)
     submit = SubmitField('Send Message')
